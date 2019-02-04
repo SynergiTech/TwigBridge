@@ -76,16 +76,18 @@ class Lint extends Command
         $format     = $this->option('format');
 
         // Check STDIN for the template
-        if (ftell(STDIN) === 0) {
-            // Read template in
-            $template = '';
+        // - twig 2 expects twig_source not string so this won't work
+        // - also this gets called when using aws codebuild for some reason so do not use
+        // if (ftell(STDIN) === 0) {
+        //     // Read template in
+        //     $template = '';
 
-            while (!feof(STDIN)) {
-                $template .= fread(STDIN, 1024);
-            }
+        //     while (!feof(STDIN)) {
+        //         $template .= fread(STDIN, 1024);
+        //     }
 
-            return $this->display([$this->validate($template)], $format);
-        }
+        //     return $this->display([$this->validate($template)], $format);
+        // }
 
         $files   = $this->getFiles($this->argument('filename'), $this->option('file'), $this->option('directory'));
         $details = [];
