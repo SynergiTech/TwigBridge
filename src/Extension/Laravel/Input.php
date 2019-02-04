@@ -44,6 +44,8 @@ class Input extends AbstractExtension
             new TwigFunction('input_old', [$this->request, 'old']),
             new TwigFunction('input_has', [$this->request, 'has']),
             new TwigFunction('old', [$this->request, 'old']),
+            new TwigFunction('request_is', [$this->request, 'is']),
+            new TwigFunction('request_segment', [$this->request, 'segment']),
         ];
     }
 }
