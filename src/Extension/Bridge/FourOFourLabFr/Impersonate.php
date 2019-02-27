@@ -28,20 +28,27 @@ class Impersonate extends Twig_Extension
                 if (auth()->check()) {
                     return auth()->user()->isImpersonated();
                 }
-                    return false;
+                return false;
             }),
             new Twig_Function('canImpersonate', function () {
                 if (auth()->check()) {
                     return auth()->user()->canImpersonate();
                 }
-                    return false;
+                return false;
             }),
-            new Twig_Function('canBeImpersonated', function ($user) { //TODO: Make sure this one actually works and if it doesn't, fix it
-                $user = trim($user);
+            new Twig_Function('canBeImpersonated', function ($userid) {
+                $model = config('auth.providers.users.model');
+
+                $user = call_user_func([
+                    $model,
+                    'findOrFail'
+                ], $userid);
+
                 if (auth()->check() && auth()->user()->id != $user->id) {
                     return $user->canBeImpersonated();
                 }
-                    return false;
+
+                return false;
             }),
         ];
     }
