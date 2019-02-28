@@ -39,7 +39,7 @@ class Impersonate extends Twig_Extension
             new Twig_Function('canBeImpersonated', function ($userid) {
                 $model = config('auth.providers.users.model');
 
-                $user = call_user_func([
+                $user = ($userid instanceof $model) ? $userid : call_user_func([
                     $model,
                     'findOrFail'
                 ], $userid);
