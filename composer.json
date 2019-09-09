@@ -20,13 +20,13 @@
     "require": {
         "php": ">=7.1",
         "twig/twig": ">=2.4.8",
-        "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.x",
-        "illuminate/view": "5.5.*|5.6.*|5.7.*|5.8.x"
+        "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.x|6.0.*",
+        "illuminate/view": "5.5.*|5.6.*|5.7.*|5.8.x|6.0.*"
     },
     "require-dev": {
-        "laravel/framework": "5.5.*|5.6.*|5.7.*|5.8.x",
+        "laravel/framework": "5.5.*|5.6.*|5.7.*|5.8.x|6.0.*",
         "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "~6.0",
         "squizlabs/php_codesniffer": "^3.3"
     },
     "autoload": {

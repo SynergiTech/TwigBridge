@@ -130,7 +130,7 @@ class ServiceProvider extends ViewServiceProvider
             $options = $this->app['config']->get('twigbridge.twig.environment', []);
 
             // Check whether we have the cache path set
-            if (!isset($options['cache']) || is_null($options['cache'])) {
+            if (! isset($options['cache']) || is_null($options['cache'])) {
                 // No cache path set for Twig, lets set to the Laravel views storage folder
                 $options['cache'] = storage_path('framework/views/twig');
             }
@@ -205,8 +205,8 @@ class ServiceProvider extends ViewServiceProvider
             'twig',
             function () {
                 $extensions = $this->app['twig.extensions'];
-                $lexer      = $this->app['twig.lexer'];
-                $twig       = new Bridge(
+                $lexer = $this->app['twig.lexer'];
+                $twig = new Bridge(
                     $this->app['twig.loader'],
                     $this->app['twig.options'],
                     $this->app
@@ -226,7 +226,7 @@ class ServiceProvider extends ViewServiceProvider
                         }
                     } elseif (is_callable($extension)) {
                         $extension = $extension($this->app, $twig);
-                    } elseif (!is_a($extension, ExtensionInterface::class)) {
+                    } elseif (! is_a($extension, ExtensionInterface::class)) {
                         throw new InvalidArgumentException('Incorrect extension type');
                     }
 
@@ -266,7 +266,7 @@ class ServiceProvider extends ViewServiceProvider
      */
     protected function registerAliases()
     {
-        if (!$this->isRunningOnPhp7() and !class_exists('TwigBridge\Extension\Laravel\String')) {
+        if (! $this->isRunningOnPhp7() and ! class_exists('TwigBridge\Extension\Laravel\String')) {
             class_alias('TwigBridge\Extension\Laravel\Str', 'TwigBridge\Extension\Laravel\String');
         }
     }
