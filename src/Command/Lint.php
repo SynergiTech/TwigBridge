@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Finder\Finder;
 use Twig\Error\Error;
 use Twig\Error\LoaderError;
+use Twig\Source;
 
 /**
  * Artisan command to check the syntax of Twig templates.
@@ -320,20 +321,15 @@ class Lint extends Command
     /**
      * Grabs the surrounding lines around the exception.
      *
-     * @param string     $template Contents of Twig template.
-     * @param string|int $line     Line where the exception occurred.
-     * @param int        $context  Number of lines around the line where the exception occurred.
+     * @param \Twig\Source  $template Contents of Twig template.
+     * @param string|int    $line     Line where the exception occurred.
+     * @param int           $context  Number of lines around the line where the exception occurred.
      *
      * @return array
      */
-    protected function getContext($template, $line, $context = 3)
+    protected function getContext(Source $template, $line, $context = 3)
     {
-        // presumably under Twig 2.0, $template is a class
-        if ($template instanceof \Twig_Source) {
-            $template = $template->getCode();
-        }
-
-        $lines    = explode("\n", $template);
+        $lines    = explode("\n", $template->getCode());
         $position = max(0, $line - $context);
         $max      = min(count($lines), $line - 1 + $context);
 

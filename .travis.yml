@@ -16,8 +16,8 @@ before_script:
   - composer install --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit --configuration phpunit.xml
-  - vendor/bin/phpcs --standard=PSR2 -p --report=full --report-checkstyle=build/logs/checkstyle.xml src/ tests/
+  - ./vendor/bin/phpunit --configuration phpunit.xml
+  - ./vendor/bin/phpcs --standard=PSR2 -p --ignore=./tests/storage/* --report=full --report-checkstyle=build/logs/checkstyle.xml src/ tests/
 
 cache:
   directories:
