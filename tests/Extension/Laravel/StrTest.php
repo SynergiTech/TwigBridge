@@ -14,7 +14,7 @@ class StrTest extends Base
         'studly_case',
     ];
 
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

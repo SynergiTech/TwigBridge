@@ -16,7 +16,7 @@ class UrlTest extends Base
         'secure_asset',
     ];
 
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }

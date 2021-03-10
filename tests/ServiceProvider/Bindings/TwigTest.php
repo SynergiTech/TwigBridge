@@ -10,7 +10,7 @@ use TwigBridge\ServiceProvider;
 
 class TwigTest extends Base
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         m::close();
     }
